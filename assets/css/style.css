@@ -1,0 +1,70 @@
+@import url('https://fonts.cdnfonts.com/css/satoshi');
+
+/* Cegah horizontal scroll/shift di Android Chrome akibat elemen yang sedikit overflow */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Layout container - max width + padding kiri kanan */
+.site-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+@media (max-width: 768px) {
+    .site-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f3f4f6; }
+::-webkit-scrollbar-thumb { background: #d97706; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #92400e; }
+
+/* Scroll reveal animation — from side, fade + slide, smooth easing */
+.reveal-left,
+.reveal-right,
+.reveal-card,
+.hero-enter,
+.hero-enter-right {
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left      { opacity: 0; transform: translateX(-40px); }
+.reveal-right     { opacity: 0; transform: translateX(40px);  }
+.reveal-card      { opacity: 0; transform: translateX(-30px); }
+.hero-enter       { opacity: 0; transform: translateX(-40px); }
+.hero-enter-right { opacity: 0; transform: translateX(40px);  }
+
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-card.visible,
+.hero-enter.visible,
+.hero-enter-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+#qr-reader { 
+    width: 100%; 
+    border: none !important; 
+    border-radius: 1rem; 
+    overflow: hidden; 
+}
+#qr-reader video {
+    object-fit: cover !important;
+    border-radius: 1rem;
+}
+
+/* Curly italic untuk "Kemasan Pintar" di hero heading */
+.hero-em-curly {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}

@@ -1,0 +1,22 @@
+# Kredensial — JANGAN pernah di-commit
+.env
+
+# Composer
+vendor/
+
+# Upload file produk (kecuali placeholder .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# Folder unused — jangan ikut deploy ke production
+unused/
+
+# Log runtime — jangan ikut commit
+logs/*
+!logs/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
