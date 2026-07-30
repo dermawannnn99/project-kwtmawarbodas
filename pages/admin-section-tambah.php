@@ -50,7 +50,7 @@
                                         <div>
                                             <label class="block text-xs font-semibold text-gray-600 mb-1.5">Kode Batch <span class="text-red-400">*</span></label>
                                             <input type="text" id="input-batch" required placeholder="LZT-XXXX"
-                                                class="w-full px-3.5 py-2.5 border border-amber-200 rounded-xl bg-amber-50/60 font-bold text-brand focus:ring-2 focus:ring-brand/20 outline-none transition-all text-sm">
+                                                class="w-full px-3.5 py-2.5 border border-brand-accent/30 rounded-xl bg-brand-accent/10 font-bold text-brand focus:ring-2 focus:ring-brand/20 outline-none transition-all text-sm">
                                         </div>
                                     </div>
                                 </div>

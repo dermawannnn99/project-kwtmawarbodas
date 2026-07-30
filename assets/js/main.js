@@ -306,7 +306,7 @@
             torchOn = false;
             
             document.getElementById('scanner-placeholder').innerHTML = `
-                <div class="bg-amber-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-brand-light w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="ph-fill ph-qr-code text-4xl text-brand"></i>
                 </div>
                 <p class="text-gray-900 font-bold text-lg">Pratinjau Scanner Kamera</p>

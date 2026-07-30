@@ -98,7 +98,7 @@ if (isset($_GET['action'])) {
                 extend: {
                     fontFamily: { sans: ['Satoshi', 'sans-serif'] },
                     colors: {
-                        brand: { light: '#fef3c7', DEFAULT: '#d97706', dark: '#92400e' }
+                        brand: { light: '#E4F0EE', DEFAULT: '#1E6472', dark: '#123F48', accent: '#D4A017' }
                     }
                 }
             }
@@ -116,7 +116,7 @@ if (isset($_GET['action'])) {
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <span class="text-lg md:text-2xl font-black text-brand flex items-center gap-2 tracking-tight">
-                        <i class="ph-fill ph-package text-3xl"></i> KWT Mawar Bodas II
+                        <img src="assets/img/logo-kwt.png" alt="Logo KWT Mawar Bodas II" class="w-8 h-8 object-contain"> KWT Mawar Bodas II
                     </span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
@@ -136,7 +136,7 @@ if (isset($_GET['action'])) {
     </nav>
 
     <!-- Hero Section -->
-    <div class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-amber-50/50 via-white to-gray-50">
+    <div class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-brand-light/50 via-white to-gray-50">
         <!-- Wallpaper tekstur halus, opacity sangat rendah -->
         <div class="absolute inset-0 z-0 pointer-events-none" style="background-image:url('assets/img/wallpaper.png');background-size:cover;background-position:center;opacity:0.065;"></div>
         <div class="absolute inset-0 z-0 opacity-40">
@@ -198,7 +198,7 @@ if (isset($_GET['action'])) {
                         
                         <!-- Placeholder Saat Kamera Belum Aktif -->
                         <div id="scanner-placeholder" class="text-center py-12 text-gray-800">
-                            <div class="bg-amber-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="bg-brand-light w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="ph-fill ph-qr-code text-4xl text-brand"></i>
                             </div>
                             <p class="text-gray-900 font-bold text-lg">Pratinjau Scanner Kamera</p>
@@ -233,7 +233,7 @@ if (isset($_GET['action'])) {
     <!-- Section Hubungi Kami -->
     <section class="reveal-left py-6 md:py-10 bg-white">
         <div class="site-container">
-            <div class="w-full bg-gradient-to-r from-amber-50 to-white rounded-2xl border border-brand/20 shadow-sm px-6 md:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="w-full bg-gradient-to-r from-brand-light to-white rounded-2xl border border-brand/20 shadow-sm px-6 md:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Ada Pertanyaan?</h2>
                     <p class="text-gray-500 text-sm leading-relaxed max-w-md">Tim kami siap membantu seputar produk dan pemesanan. Hubungi kami langsung via WhatsApp.</p>
@@ -254,8 +254,8 @@ if (isset($_GET['action'])) {
                 <!-- Kolom 1: Brand identity -->
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-brand rounded-xl p-2 shrink-0">
-                            <i class="ph-fill ph-package text-white text-xl"></i>
+                        <div class="bg-white rounded-xl p-1.5 shrink-0 flex items-center justify-center w-9 h-9">
+                            <img src="assets/img/logo-kwt.png" alt="Logo KWT Mawar Bodas II" class="w-6 h-6 object-contain">
                         </div>
                         <span class="font-black text-white text-lg tracking-tight">KWT Mawar Bodas II</span>
                     </div>
@@ -373,7 +373,7 @@ if (isset($_GET['action'])) {
     <div id="modal-generate-qr" class="fixed inset-0 bg-black/85 z-[120] hidden flex items-center justify-center p-4">
         <div class="bg-white p-8 rounded-3xl text-center max-w-sm w-full shadow-2xl">
             <h3 class="font-black text-xl text-gray-900 mb-1">Cetak Kode Batch QR</h3>
-            <p id="qr-batch-text" class="text-brand font-bold text-sm bg-amber-50 px-3 py-1 rounded-full border border-amber-200 inline-block mb-6"></p>
+            <p id="qr-batch-text" class="text-brand-accent font-bold text-sm bg-brand-accent/10 px-3 py-1 rounded-full border border-brand-accent/20 inline-block mb-6"></p>
             
             <div class="p-4 bg-gray-50 rounded-2xl border mb-6">
                 <!-- QR Code Generator Dinamis menggunakan API goqr.me -->

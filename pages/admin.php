@@ -69,7 +69,7 @@ require_once __DIR__ . '/admin-api.php';
             <i class="ph-bold ph-qr-code text-green-600 text-3xl"></i>
         </div>
         <h3 class="font-black text-xl text-gray-900 mb-1">Cetak Kode Batch QR</h3>
-        <p id="qr-batch-text" class="text-brand font-bold text-sm bg-amber-50 px-3 py-1 rounded-full border border-amber-200 inline-block mb-5"></p>
+        <p id="qr-batch-text" class="text-brand-accent font-bold text-sm bg-brand-accent/10 px-3 py-1 rounded-full border border-brand-accent/20 inline-block mb-5"></p>
         <div class="p-3 bg-gray-50 rounded-2xl border mb-5">
             <img id="qr-generated-img" src="" alt="Dynamic QR" class="w-48 h-48 mx-auto border-4 border-white rounded-xl shadow-md" crossorigin="anonymous">
         </div>

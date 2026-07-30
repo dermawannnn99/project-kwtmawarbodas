@@ -15,7 +15,7 @@
                 extend: {
                     fontFamily: { sans: ['Satoshi', 'sans-serif'] },
                     colors: {
-                        brand: { light: '#fef3c7', DEFAULT: '#d97706', dark: '#92400e' }
+                        brand: { light: '#E4F0EE', DEFAULT: '#1E6472', dark: '#123F48', accent: '#D4A017' }
                     }
                 }
             }
@@ -26,11 +26,11 @@
         #sidebar-overlay { transition: opacity 0.25s ease; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: #1E6472; border-radius: 3px; }
         .section-content { display: none; }
         .section-content.active { display: block; box-sizing: border-box; }
-        .nav-item.active { background: #374151; color: #f59e0b; }
-        .nav-item.active i { color: #f59e0b; }
+        .nav-item.active { background: #374151; color: #D4A017; }
+        .nav-item.active i { color: #D4A017; }
         @keyframes notif-in {
             from { opacity: 0; transform: scale(0.88); }
             to   { opacity: 1; transform: scale(1); }

@@ -23,8 +23,8 @@ html, body {
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f3f4f6; }
-::-webkit-scrollbar-thumb { background: #d97706; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #92400e; }
+::-webkit-scrollbar-thumb { background: #1E6472; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #123F48; }
 
 /* Scroll reveal animation — from side, fade + slide, smooth easing */
 .reveal-left,

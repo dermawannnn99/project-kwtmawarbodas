@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 extend: {
                     fontFamily: { sans: ['Satoshi', 'sans-serif'] },
                     colors: {
-                        brand: { light: '#fef3c7', DEFAULT: '#d97706', dark: '#92400e' }
+                        brand: { light: '#E4F0EE', DEFAULT: '#1E6472', dark: '#123F48', accent: '#D4A017' }
                     }
                 }
             }

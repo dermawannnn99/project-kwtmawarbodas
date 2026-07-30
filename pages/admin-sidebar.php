@@ -8,8 +8,8 @@
 
     <!-- Brand -->
     <div class="px-5 py-5 border-b border-white/10 flex items-center gap-3">
-        <div class="bg-brand rounded-xl p-2 shrink-0">
-            <i class="ph-fill ph-package text-white text-xl"></i>
+        <div class="bg-white rounded-xl p-1.5 shrink-0 flex items-center justify-center w-9 h-9">
+            <img src="../assets/img/logo-kwt.png" alt="Logo KWT Mawar Bodas II" class="w-6 h-6 object-contain">
         </div>
         <div class="min-w-0">
             <p class="font-black text-sm leading-tight truncate">KWT Mawar Bodas II</p>
