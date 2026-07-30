@@ -51,6 +51,7 @@ document.getElementById('product-form').addEventListener('submit', async (e) => 
     formData.append('prod_date',      document.getElementById('input-prod').value);
     formData.append('exp_date',       document.getElementById('input-exp').value);
     formData.append('existing_image', document.getElementById('input-existing-image').value);
+    formData.append('category',        document.getElementById('input-category').value);
     if (fileInput.files && fileInput.files.length > 0) formData.append('product_image', fileInput.files[0]);
 
     // [SEC-3] Sertakan CSRF token
@@ -108,6 +109,7 @@ window.editProduct = (id) => {
     document.getElementById('input-prod').value           = p.prod_date;
     document.getElementById('input-exp').value            = p.exp_date;
     document.getElementById('input-existing-image').value = p.image_url;
+    document.getElementById('input-category').value        = p.category;
     imagePreview.src = resolveImagePath(p.image_url);
     imagePreview.classList.remove('hidden');
     uploadPlaceholder.classList.add('hidden');
@@ -137,6 +139,7 @@ function resetForm() {
     imageFilename.textContent = '';
     document.getElementById('edit-image-info').classList.add('hidden');
     inputImage.value = '';
+    document.getElementById('input-category').value = 'makanan';
 }
 
 // TOGGLE VISIBILITY

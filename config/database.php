@@ -44,6 +44,7 @@ try {
         prod_date   DATE,
         exp_date    DATE,
         is_visible  TINYINT(1) NOT NULL DEFAULT 1,
+        category    VARCHAR(30) NOT NULL DEFAULT 'makanan',
         created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )");
 
@@ -55,6 +56,13 @@ try {
             $pdo->exec("ALTER TABLE products ADD COLUMN is_visible TINYINT(1) NOT NULL DEFAULT 1");
             $pdo->exec("UPDATE products SET is_visible = 1");
         }
+    }
+
+    // Migrasi kolom category — SELALU dieksekusi di semua environment (local maupun production)
+    // [CAT-1] Database production yang sudah berjalan belum punya kolom ini — tidak boleh di-skip
+    $catCols = $pdo->query("SHOW COLUMNS FROM products LIKE 'category'")->fetchAll();
+    if (empty($catCols)) {
+        $pdo->exec("ALTER TABLE products ADD COLUMN category VARCHAR(30) NOT NULL DEFAULT 'makanan'");
     }
 
     // Auto-create tabel login — [DB-1] tambah last_login_at dan last_login_ip

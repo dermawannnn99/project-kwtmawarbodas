@@ -41,6 +41,15 @@
                                         <input type="text" id="input-name" required placeholder="Contoh: Rendang Daging Sapi"
                                             class="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand/20 focus:border-brand outline-none transition-all text-sm bg-white">
                                     </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1.5">Kategori <span class="text-red-400">*</span></label>
+                                        <select id="input-category" required
+                                            class="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand/20 focus:border-brand outline-none transition-all text-sm bg-white">
+                                            <option value="makanan">Makanan</option>
+                                            <option value="minuman">Minuman</option>
+                                            <option value="kebutuhan-rumah-tangga">Kebutuhan Rumah Tangga</option>
+                                        </select>
+                                    </div>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
                                             <label class="block text-xs font-semibold text-gray-600 mb-1.5">Harga (IDR) <span class="text-red-400">*</span></label>

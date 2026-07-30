@@ -61,6 +61,36 @@ html, body {
     border-radius: 1rem;
 }
 
+/* Filter bar kategori produk — aksen gold #D4A017, beda dari warna brand teal */
+.category-filter-btn {
+    background-color: #fff;
+    border: 1.5px solid #e5e7eb;
+    color: #374151;
+    cursor: pointer;
+}
+.category-filter-btn i {
+    color: #D4A017;
+    transition: color 0.2s;
+}
+.category-filter-btn:hover {
+    border-color: rgba(212, 160, 23, 0.5);
+    color: #374151;
+    background-color: #fdfaf2;
+}
+.category-filter-btn:hover i {
+    color: #D4A017;
+}
+.category-filter-btn.active-filter {
+    background-color: rgba(212, 160, 23, 0.10);
+    border: 1.5px solid #D4A017;
+    color: #D4A017;
+    font-weight: 700;
+    box-shadow: 0 2px 10px 0 rgba(212, 160, 23, 0.15);
+}
+.category-filter-btn.active-filter i {
+    color: #D4A017;
+}
+
 /* Curly italic untuk "Kemasan Pintar" di hero heading */
 .hero-em-curly {
     font-family: 'Playfair Display', Georgia, serif;

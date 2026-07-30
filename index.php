@@ -222,7 +222,22 @@ if (isset($_GET['action'])) {
                 <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Katalog Produk Pilihan</h2>
                 <p class="text-gray-500 mt-3">Nikmati beragam cita rasa kuliner nusantara instan kualitas restoran terpercaya.</p>
             </div>
-            <div id="public-product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Filter Bar Kategori Produk -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10" id="category-filter-bar">
+                <button data-category="semua" class="category-filter-btn active-filter inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
+                    <i class="ph-bold ph-squares-four text-base"></i> Semua
+                </button>
+                <button data-category="makanan" class="category-filter-btn inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
+                    <i class="ph-bold ph-bowl-food text-base"></i> Makanan
+                </button>
+                <button data-category="minuman" class="category-filter-btn inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
+                    <i class="ph-bold ph-coffee text-base"></i> Minuman
+                </button>
+                <button data-category="kebutuhan-rumah-tangga" class="category-filter-btn inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
+                    <i class="ph-bold ph-house-line text-base"></i> Kebutuhan Rumah Tangga
+                </button>
+            </div>
+            <div id="public-product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="col-span-full text-center text-gray-500 py-12">
                     <i class="ph-bold ph-spinner animate-spin text-3xl text-brand mb-2 block mx-auto"></i> Memuat daftar menu...
                 </div>

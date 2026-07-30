@@ -105,11 +105,11 @@ require_once __DIR__ . '/admin-api.php';
 </div>
 
 <!-- [QUAL-1] shared-utils harus dimuat pertama sebelum render.js dan products.js -->
-<script src="../assets/js/shared-utils.js"></script>
-<script src="admin-js/ui.js"></script>
-<script src="admin-js/render.js"></script>
-<script src="admin-js/products.js"></script>
-<script src="admin-js/qr.js"></script>
+<script src="../assets/js/shared-utils.js?v=<?php echo filemtime(__DIR__.'/../assets/js/shared-utils.js'); ?>"></script>
+<script src="admin-js/ui.js?v=<?php echo filemtime(__DIR__.'/admin-js/ui.js'); ?>"></script>
+<script src="admin-js/render.js?v=<?php echo filemtime(__DIR__.'/admin-js/render.js'); ?>"></script>
+<script src="admin-js/products.js?v=<?php echo filemtime(__DIR__.'/admin-js/products.js'); ?>"></script>
+<script src="admin-js/qr.js?v=<?php echo filemtime(__DIR__.'/admin-js/qr.js'); ?>"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         fetchProducts();

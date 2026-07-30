@@ -81,10 +81,19 @@ if ($action === 'save_product') {
     $prod_date   = trim($_POST['prod_date'] ?? '');
     $exp_date    = trim($_POST['exp_date'] ?? '');
     $image_url   = trim($_POST['existing_image'] ?? '');
+    $category    = trim($_POST['category'] ?? '');
 
     // [SEC-2] Validasi field wajib
     if ($name === '' || $description === '' || $batch_code === '' || $prod_date === '' || $exp_date === '') {
         echo json_encode(['status' => 'error', 'message' => 'Semua field wajib harus diisi.']);
+        exit;
+    }
+
+    // [SEC-2] Validasi whitelist kategori produk
+    $allowedCategories = ['makanan', 'minuman', 'kebutuhan-rumah-tangga'];
+    if (!in_array($category, $allowedCategories, true)) {
+        error_log("[CAT-DEBUG] category received: " . var_export($category, true) . " | hex: " . bin2hex($category));
+        echo json_encode(['status' => 'error', 'message' => 'Kategori produk tidak valid. Diterima: [' . htmlspecialchars($category) . ']']);
         exit;
     }
     if (!is_numeric($price) || (float)$price <= 0) {
@@ -186,18 +195,18 @@ if ($action === 'save_product') {
     try {
         if (empty($id)) {
             $stmt = $pdo->prepare(
-                "INSERT INTO products (name, price, image_url, badge, description, batch_code, prod_date, exp_date)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                "INSERT INTO products (name, price, image_url, badge, description, batch_code, prod_date, exp_date, category)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
-            $stmt->execute([$name, (float)$price, $image_url, $badge, $description, $batch_code, $prod_date, $exp_date]);
+            $stmt->execute([$name, (float)$price, $image_url, $badge, $description, $batch_code, $prod_date, $exp_date, $category]);
             echo json_encode(['status' => 'success', 'message' => 'Produk berhasil ditambahkan.']);
         } else {
             $id = (int)$id;
             $stmt = $pdo->prepare(
-                "UPDATE products SET name=?, price=?, image_url=?, badge=?, description=?, batch_code=?, prod_date=?, exp_date=?
+                "UPDATE products SET name=?, price=?, image_url=?, badge=?, description=?, batch_code=?, prod_date=?, exp_date=?, category=?
                  WHERE id=?"
             );
-            $stmt->execute([$name, (float)$price, $image_url, $badge, $description, $batch_code, $prod_date, $exp_date, $id]);
+            $stmt->execute([$name, (float)$price, $image_url, $badge, $description, $batch_code, $prod_date, $exp_date, $category, $id]);
             echo json_encode(['status' => 'success', 'message' => 'Data produk berhasil diperbarui.']);
         }
     } catch (\PDOException $err) {

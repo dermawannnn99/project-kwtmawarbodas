@@ -47,6 +47,7 @@
         // KRISTALISASI DATABASE CRUD AJAX (MySQL)
         // ==========================================
         let productsCache = [];
+        let activeCategory = 'semua';
         
         async function fetchProducts() {
             try {
@@ -91,24 +92,31 @@
 
         function renderPublicProducts() {
             const listContainer = document.getElementById('public-product-list');
-            // Filter: hanya tampilkan produk yang is_visible = 1
-            const visible = productsCache.filter(p => parseInt(p.is_visible ?? 1) === 1);
+            // Filter: hanya tampilkan produk yang is_visible = 1 DAN cocok dengan kategori aktif
+            const visible = productsCache.filter(p => {
+                const isVisible = parseInt(p.is_visible ?? 1) === 1;
+                const matchCategory = activeCategory === 'semua' || p.category === activeCategory;
+                return isVisible && matchCategory;
+            });
             if (visible.length === 0) {
-                listContainer.innerHTML = '<div class="col-span-full text-center text-gray-400 py-12">Belum ada katalog menu di database MySQL Anda.</div>';
+                const emptyMsg = activeCategory === 'semua'
+                    ? 'Belum ada katalog menu di database MySQL Anda.'
+                    : 'Belum ada produk di kategori ini.';
+                listContainer.innerHTML = `<div class="col-span-full text-center text-gray-400 py-12">${emptyMsg}</div>`;
                 return;
             }
             // [SEC-6] Semua data dari server di-escape dengan escHtml() sebelum masuk innerHTML
             listContainer.innerHTML = visible.map(p => `
                 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all flex flex-col h-full group">
-                    <div class="relative overflow-hidden h-56 bg-gray-100">
+                    <div class="relative overflow-hidden aspect-square bg-gray-100">
                         <img src="${escHtml(p.image_url)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500'">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-2 gap-4">
-                            <h3 class="text-xl font-extrabold text-gray-900 line-clamp-1">${escHtml(p.name)}</h3>
-                            <span class="font-extrabold text-brand shrink-0 text-lg">${formatRupiah(p.price)}</span>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="mb-3">
+                            <h3 class="text-base font-extrabold text-gray-900 line-clamp-2 leading-snug">${escHtml(p.name)}</h3>
+                            <span class="block mt-1 font-extrabold text-brand text-lg">${formatRupiah(p.price)}</span>
                         </div>
-                        <p class="text-sm text-gray-500 mb-6 flex-grow line-clamp-3">${escHtml(p.description)}</p>
+                        <p class="text-sm text-gray-500 mb-5 flex-grow line-clamp-3">${escHtml(p.description)}</p>
                         <div class="flex gap-2 items-center justify-between mt-auto pt-4 border-t border-gray-100">
                             <span class="text-xs font-semibold text-gray-400">Exp: ${escHtml(p.exp_date)}</span>
                             <a href="#qrcode" class="bg-brand/10 hover:bg-brand text-brand hover:text-white px-4 py-2 rounded-xl text-xs font-extrabold transition-all">Pindai QR Kemasan</a>
@@ -491,8 +499,10 @@
         }
 
         // ==========================================
-        // SCROLL REVEAL — Intersection Observer
-        // Animasi ulang setiap kali elemen masuk/keluar viewport
+        // SCROLL REVEAL — Intersection Observer (ONE-TIME REVEAL)
+        // Animasi hanya terjadi SEKALI saat elemen pertama masuk viewport.
+        // Setelah visible, observer di-unobserve — class 'visible' TIDAK
+        // pernah dihapus lagi, sehingga konten tidak blank saat scroll di mobile.
         // ==========================================
         let _scrollRevealObserver = null; // [UI-1] simpan referensi untuk cleanup
 
@@ -501,8 +511,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                    } else {
-                        entry.target.classList.remove('visible');
+                        _scrollRevealObserver.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.15 });
@@ -528,8 +537,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                    } else {
-                        entry.target.classList.remove('visible');
+                        cardObserver.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.1 });
@@ -553,6 +561,17 @@
             fetchProducts();
             initScrollReveal();
             initHeroAnimation();
+
+            // Filter bar kategori produk — toggle class, update state, re-render tanpa fetch ulang
+            const filterBtns = document.querySelectorAll('.category-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeCategory = btn.dataset.category;
+                    filterBtns.forEach(b => b.classList.remove('active-filter'));
+                    btn.classList.add('active-filter');
+                    renderPublicProducts();
+                });
+            });
             
             // Periksa fitur Auto-Scan lewat URL link (ketika user langsung memindai QR bawaan smartphone kamera)
             // [SEC-7] Gunakan json_encode untuk escaping konteks JS yang aman
