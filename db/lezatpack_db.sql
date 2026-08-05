@@ -22,9 +22,11 @@ CREATE TABLE `login` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Password default: admin123 (bcrypt) — GANTI SEGERA di production!
-INSERT INTO `login` (`id`, `username`, `password`) VALUES
-(1, 'admin', '$2y$10$6eldp9DjZLrJOmMxzp.XnuatD3hu9iMVARl/OUwg3yFZGyLhTFm3i');
+-- Admin default TIDAK di-seed di sini (dulu hardcode admin123 — risiko di production).
+-- Admin dibuat otomatis saat aplikasi pertama jalan, lihat config/database.php:
+-- username/password dibaca dari .env (ADMIN_USERNAME & ADMIN_PASSWORD).
+-- Di production wajib isi ADMIN_PASSWORD kuat — kalau kosong/lemah, aplikasi
+-- generate password acak dan mencatatnya di logs/admin_credentials.txt.
 
 -- =========================================================================
 -- Tabel: login_attempts

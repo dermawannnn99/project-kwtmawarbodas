@@ -97,11 +97,48 @@ try {
     )");
 
     // Seed default admin kalau tabel login kosong
+    // [SEC-7] Kredensial admin dibaca dari .env (ADMIN_USERNAME & ADMIN_PASSWORD),
+    //         bukan di-hardcode. Di production, kalau password kosong/lemah,
+    //         digenerate acak agar tidak pernah ada default yang diketahui publik.
     $adminCount = $pdo->query("SELECT COUNT(*) FROM login")->fetchColumn();
     if ($adminCount == 0) {
-        $defaultHash = password_hash('admin123', PASSWORD_BCRYPT);
+        $adminUser = getenv('ADMIN_USERNAME') ?: 'admin';
+        $adminPass = getenv('ADMIN_PASSWORD') ?: 'admin123';
+        if ($appEnv === 'production' && ($adminPass === '' || $adminPass === 'admin123' || strlen($adminPass) < 12)) {
+            $adminPass = bin2hex(random_bytes(9)); // 18 karakter acak
+            $credMsg = "[DB] ADMIN OTOMATIS — user '$adminUser' dibuat dengan password sementara: $adminPass (GANTI SEGERA!)";
+            error_log($credMsg);
+            $logDir = __DIR__ . '/../logs';
+            if (!is_dir($logDir)) @mkdir($logDir, 0755, true);
+            file_put_contents($logDir . '/admin_credentials.txt', date('c') . " | " . $credMsg . PHP_EOL, FILE_APPEND);
+        }
+        $defaultHash = password_hash($adminPass, PASSWORD_BCRYPT);
         $pdo->prepare("INSERT INTO login (username, password) VALUES (?, ?)")
-            ->execute(['admin', $defaultHash]);
+            ->execute([$adminUser, $defaultHash]);
+    }
+
+    // [SEC-7] Rotasi password default lama — DB yang sudah jalan (mis. hasil import SQL
+    //         lama) masih berisi user berpassword 'admin123'. Di production, reset otomatis
+    //         dari .env; kalau env kosong/lemah, digenerate acak. Berlaku untuk SEMUA user
+    //         yang masih memakai password default 'admin123'.
+    if ($appEnv === 'production') {
+        $existing = $pdo->query("SELECT id, username, password FROM login")->fetchAll();
+        foreach ($existing as $u) {
+            if (!password_verify('admin123', $u['password'])) continue;
+            $newPass = getenv('ADMIN_PASSWORD');
+            if (empty($newPass) || $newPass === 'admin123' || strlen($newPass) < 12) {
+                $newPass = bin2hex(random_bytes(9));
+            }
+            $newHash = password_hash($newPass, PASSWORD_BCRYPT);
+            $pdo->prepare("UPDATE login SET password = ? WHERE id = ?")
+                ->execute([$newHash, $u['id']]);
+            $credMsg = "[DB] ROTASI PASSWORD — user '{$u['username']}' masih memakai default 'admin123', "
+                     . "sudah direset. Password baru: $newPass (GANTI SEGERA!)";
+            error_log($credMsg);
+            $logDir = __DIR__ . '/../logs';
+            if (!is_dir($logDir)) @mkdir($logDir, 0755, true);
+            file_put_contents($logDir . '/admin_credentials.txt', date('c') . " | " . $credMsg . PHP_EOL, FILE_APPEND);
+        }
     }
 
     // Seed produk dummy jika tabel kosong — [QUAL-4] gambar pakai placeholder lokal
