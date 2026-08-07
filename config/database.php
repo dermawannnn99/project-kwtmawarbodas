@@ -100,7 +100,7 @@ try {
             error_log($credMsg);
             $logDir = __DIR__ . '/../logs';
             if (!is_dir($logDir)) @mkdir($logDir, 0755, true);
-            file_put_contents($logDir . '/admin_credentials.txt', date('c') . " | " . $credMsg . PHP_EOL, FILE_APPEND);
+            file_put_contents($logDir . '/admin_credentials.log', date('c') . " | " . $credMsg . PHP_EOL, FILE_APPEND);
         }
         $defaultHash = password_hash($adminPass, PASSWORD_BCRYPT);
         $pdo->prepare("INSERT INTO login (username, password) VALUES (?, ?)")
@@ -124,7 +124,7 @@ try {
             error_log($credMsg);
             $logDir = __DIR__ . '/../logs';
             if (!is_dir($logDir)) @mkdir($logDir, 0755, true);
-            file_put_contents($logDir . '/admin_credentials.txt', date('c') . " | " . $credMsg . PHP_EOL, FILE_APPEND);
+            file_put_contents($logDir . '/admin_credentials.log', date('c') . " | " . $credMsg . PHP_EOL, FILE_APPEND);
         }
     }
 

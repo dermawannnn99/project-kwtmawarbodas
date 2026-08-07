@@ -92,7 +92,6 @@ if ($action === 'save_product') {
     // [SEC-2] Validasi whitelist kategori produk
     $allowedCategories = ['makanan', 'minuman', 'kebutuhan-rumah-tangga'];
     if (!in_array($category, $allowedCategories, true)) {
-        error_log("[CAT-DEBUG] category received: " . var_export($category, true) . " | hex: " . bin2hex($category));
         echo json_encode(['status' => 'error', 'message' => 'Kategori produk tidak valid. Diterima: [' . htmlspecialchars($category) . ']']);
         exit;
     }

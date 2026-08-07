@@ -1,4 +1,31 @@
         // ==========================================
+        // MOBILE DRAWER MENU
+        // ==========================================
+        function openMobileMenu() {
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const panel   = document.getElementById('mobile-menu-panel');
+            if (!overlay || !panel) return;
+            overlay.classList.remove('hidden');
+            // Paksa reflow sebelum transisi supaya opacity/transform berjalan
+            overlay.getBoundingClientRect();
+            overlay.classList.add('opacity-100');
+            overlay.classList.remove('opacity-0');
+            panel.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden'; // cegah scroll background
+        }
+
+        function closeMobileMenu() {
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const panel   = document.getElementById('mobile-menu-panel');
+            if (!overlay || !panel) return;
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
+            panel.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+
+        // ==========================================
         // SISTEM TOAST
         // ==========================================
         function showToast(msg, isError=false) {
@@ -125,6 +152,9 @@
                 </div>
             `).join('');
             applyCardReveal();
+            // Re-observe section lain yang mungkin posisinya bergeser setelah
+            // grid produk selesai di-render dan tinggi halaman bertambah drastis
+            refreshScrollReveal();
         }
 
         function renderAdminProducts() {
@@ -517,6 +547,25 @@
             }, { threshold: 0.15 });
 
             document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => _scrollRevealObserver.observe(el));
+
+            // Safety net: paksa semua elemen reveal jadi visible setelah 3 detik
+            // kalau observer belum trigger (device/browser edge case)
+            setTimeout(() => {
+                document.querySelectorAll('.reveal-left:not(.visible), .reveal-right:not(.visible)').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 3000);
+        }
+
+        // Re-observe semua reveal element — dipanggil setelah konten JS mengubah
+        // tinggi halaman secara signifikan, supaya observer section di bawah tidak
+        // salah hitung posisi viewport-nya.
+        function refreshScrollReveal() {
+            if (!_scrollRevealObserver) return;
+            document.querySelectorAll('.reveal-left:not(.visible), .reveal-right:not(.visible)').forEach(el => {
+                _scrollRevealObserver.unobserve(el);
+                _scrollRevealObserver.observe(el);
+            });
         }
 
         // Terapkan reveal-card + stagger ke product card yang di-render via JS

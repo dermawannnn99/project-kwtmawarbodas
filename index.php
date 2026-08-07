@@ -120,6 +120,7 @@ if (isset($_GET['action'])) {
                     </span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
+                    <a href="profil.php" class="text-gray-600 hover:text-brand font-medium transition-colors">Profil</a>
                     <a href="#keunggulan" class="text-gray-600 hover:text-brand font-medium transition-colors">Keunggulan</a>
                     <a href="#produk" class="text-gray-600 hover:text-brand font-medium transition-colors">Katalog Produk</a>
                     <a href="#qrcode" class="text-gray-600 hover:text-brand font-medium transition-colors">Validasi QR Kemasan</a>
@@ -127,13 +128,54 @@ if (isset($_GET['action'])) {
                         Login
                     </a>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <a href="pages/login.php" class="text-brand mr-4 font-bold text-sm bg-brand/10 px-3 py-1.5 rounded-lg">Login</a>
-                    <a href="#qrcode" class="text-gray-600 hover:text-brand"><i class="ph ph-qr-code text-3xl"></i></a>
+                <div class="md:hidden flex items-center gap-3">
+                    <a href="pages/login.php" class="text-brand font-bold text-sm bg-brand/10 px-3 py-1.5 rounded-lg">Login</a>
+                    <button onclick="openMobileMenu()" aria-label="Buka menu navigasi"
+                        class="text-gray-700 hover:text-brand transition-colors p-1">
+                        <i class="ph-bold ph-list text-2xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu-overlay"
+         onclick="closeMobileMenu()"
+         class="fixed inset-0 bg-black/50 z-[60] hidden opacity-0 transition-opacity duration-300"></div>
+
+    <div id="mobile-menu-panel"
+         class="fixed top-0 right-0 h-full w-72 max-w-[80%] bg-white z-[70] shadow-2xl translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+
+        <!-- Header drawer -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+            <span class="font-black text-brand text-base tracking-tight">Menu</span>
+            <button onclick="closeMobileMenu()" aria-label="Tutup menu"
+                class="text-gray-500 hover:text-brand transition-colors p-1">
+                <i class="ph-bold ph-x text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Nav items -->
+        <nav class="flex-1 overflow-y-auto py-2">
+            <a href="profil.php" onclick="closeMobileMenu()"
+               class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
+                <i class="ph-bold ph-user-circle text-lg text-brand/70"></i> Profil
+            </a>
+            <a href="#keunggulan" onclick="closeMobileMenu()"
+               class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
+                <i class="ph-bold ph-star text-lg text-brand/70"></i> Keunggulan
+            </a>
+            <a href="#produk" onclick="closeMobileMenu()"
+               class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
+                <i class="ph-bold ph-storefront text-lg text-brand/70"></i> Katalog Produk
+            </a>
+            <a href="#qrcode" onclick="closeMobileMenu()"
+               class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
+                <i class="ph-bold ph-qr-code text-lg text-brand/70"></i> Validasi QR Kemasan
+            </a>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
     <div class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-brand-light/50 via-white to-gray-50">
@@ -160,6 +202,64 @@ if (isset($_GET['action'])) {
             </div>
         </div>
     </div>
+
+    <!-- Section Tentang Kami -->
+    <section class="reveal-right py-10 md:py-14 bg-gray-50">
+        <div class="site-container">
+            <!-- Card dengan foto background -->
+            <div class="relative overflow-hidden rounded-3xl shadow-lg min-h-[360px] md:min-h-[380px] flex items-center">
+
+                <!-- Background foto kegiatan KWT -->
+                <img src="assets/img/foto-kwt-kegiatan.jpg"
+                     class="absolute inset-0 w-full h-full object-cover"
+                     alt="Kegiatan KWT Mawar Bodas II">
+
+                <!-- Overlay gradient brand: pekat di kiri, transparan di kanan -->
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-brand-dark/30"></div>
+
+                <!-- Konten di atas overlay -->
+                <div class="relative z-10 flex flex-col justify-center p-6 md:p-14 max-w-xl">
+
+                    <!-- Label kecil -->
+                    <p class="text-xs font-bold uppercase tracking-widest text-white/60 mb-2 md:mb-3">Tentang Kami</p>
+
+                    <!-- Judul -->
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-3 md:mb-4 leading-tight">
+                        Mengenal KWT Mawar Bodas II
+                    </h2>
+
+                    <!-- Deskripsi -->
+                    <p class="text-white/90 text-sm md:text-base leading-relaxed max-w-lg mb-4 md:mb-6">
+                        Berawal dari bagian Kelompok Tani Mawar Bodas 2, sekelompok ibu rumah tangga di Desa Bengle membentuk kelompok khusus wanita tani pada tahun 2019. Kini KWT Mawar Bodas II beranggotakan 21 orang yang aktif dalam bidang pertanian dan pembuatan olahan pangan rumahan.
+                    </p>
+
+                    <!-- Badge angka -->
+                    <div class="flex flex-wrap gap-5 md:gap-10 mb-5 md:mb-8">
+                        <div>
+                            <p class="text-xl md:text-3xl font-black text-white leading-none">2019</p>
+                            <p class="text-xs text-white/70 uppercase tracking-wide mt-1">Tahun Berdiri</p>
+                        </div>
+                        <div>
+                            <p class="text-xl md:text-3xl font-black text-white leading-none">21</p>
+                            <p class="text-xs text-white/70 uppercase tracking-wide mt-1">Anggota Aktif</p>
+                        </div>
+                        <div>
+                            <p class="text-xl md:text-3xl font-black text-white leading-none">Desa Bengle</p>
+                            <p class="text-xs text-white/70 uppercase tracking-wide mt-1">Lokasi</p>
+                        </div>
+                    </div>
+
+                    <!-- Tombol CTA -->
+                    <a href="profil.php"
+                       class="inline-flex items-center gap-2 bg-white text-brand-dark font-bold px-6 py-3 rounded-xl hover:bg-brand-light transition-all w-fit">
+                        Lihat Profil Lengkap
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Seksi Web-Camera Scanner -->
     <section id="qrcode" class="reveal-left py-16 md:py-24 bg-gray-950 text-white relative">
@@ -216,7 +316,7 @@ if (isset($_GET['action'])) {
     </section>
 
     <!-- Bagian Etalase Produk -->
-    <section id="produk" class="reveal-right py-12 md:py-16 bg-gray-50 border-t border-gray-100">
+    <section id="produk" class="py-12 md:py-16 bg-gray-50 border-t border-gray-100">
         <div class="site-container">
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Katalog Produk Pilihan</h2>
