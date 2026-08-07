@@ -1,16 +1,9 @@
--- =========================================================================
--- LezatPack / KWT Mawar Bodas II — Database Schema
--- Versi ini sudah sinkron dengan semua kolom aktual di aplikasi.
--- Import file ini ke phpMyAdmin atau jalankan via: mysql -u root lezatpack_db < lezatpack_db.sql
--- =========================================================================
+-- Database schema LezatPack, sinkron dengan aplikasi.
 
 CREATE DATABASE IF NOT EXISTS `lezatpack_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `lezatpack_db`;
 
--- =========================================================================
--- Tabel: login
--- [DB-1] Tambah kolom last_login_at dan last_login_ip untuk audit trail
--- =========================================================================
+-- Tabel login (dengan audit last_login)
 DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
   `id`            int(11)      NOT NULL AUTO_INCREMENT,
@@ -22,16 +15,10 @@ CREATE TABLE `login` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Admin default TIDAK di-seed di sini (dulu hardcode admin123 — risiko di production).
--- Admin dibuat otomatis saat aplikasi pertama jalan, lihat config/database.php:
--- username/password dibaca dari .env (ADMIN_USERNAME & ADMIN_PASSWORD).
--- Di production wajib isi ADMIN_PASSWORD kuat — kalau kosong/lemah, aplikasi
--- generate password acak dan mencatatnya di logs/admin_credentials.txt.
+-- Admin dibuat otomatis saat aplikasi pertama jalan (lihat config/database.php),
+-- kredensial dari .env (ADMIN_USERNAME & ADMIN_PASSWORD).
 
--- =========================================================================
--- Tabel: login_attempts
--- [SEC-5] Rate limiting persisten berbasis DB (username + IP)
--- =========================================================================
+-- Tabel login_attempts (rate limiting per username + IP)
 DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE `login_attempts` (
   `id`              int(11)      NOT NULL AUTO_INCREMENT,
@@ -44,10 +31,7 @@ CREATE TABLE `login_attempts` (
   UNIQUE KEY `idx_identifier_ip` (`identifier`, `ip_address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =========================================================================
--- Tabel: products
--- [BUG-3] Kolom is_visible sudah masuk ke definisi — tidak perlu ALTER per-request
--- =========================================================================
+-- Tabel products (is_visible termasuk di definisi)
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id`          int(11)        NOT NULL AUTO_INCREMENT,
@@ -65,7 +49,7 @@ CREATE TABLE `products` (
   UNIQUE KEY `batch_code` (`batch_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Seed data produk (gambar pakai placeholder lokal, bukan URL Unsplash eksternal)
+-- Seed data produk (gambar pakai placeholder lokal)
 INSERT INTO `products` (`id`, `name`, `price`, `image_url`, `badge`, `description`, `batch_code`, `prod_date`, `exp_date`, `is_visible`, `created_at`) VALUES
 (3, 'Rendang Daging Sapi', 65000.00, 'assets/img/gambarhero.png', 'Best Seller',
  'Daging sapi pilihan berbalut bumbu rempah asli Minang yang pekat. Dimasak perlahan untuk memastikan bumbu meresap sempurna.',

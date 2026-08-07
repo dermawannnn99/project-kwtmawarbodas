@@ -1,9 +1,5 @@
 <?php
-// =========================================================================
-// KONFIGURASI DATABASE MYSQL
-// Kredensial dibaca dari file .env di root project — JANGAN hardcode di sini.
-// Salin .env.example ke .env dan isi sesuai environment Anda.
-// =========================================================================
+// Kredensial database dibaca dari .env (jangan hardcode)
 
 require_once __DIR__ . '/env.php';
 loadEnv(__DIR__ . '/../.env');
@@ -22,7 +18,7 @@ $options = [
 ];
 
 try {
-    // Hubungkan dulu ke MySQL host (tanpa memilih database) untuk auto-create DB
+    // Hubungkan ke host MySQL lalu auto-create database
     $dsn_no_db = "mysql:host=$host;charset=$charset";
     $pdo_init  = new PDO($dsn_no_db, $user, $pass, $options);
     $pdo_init->exec("CREATE DATABASE IF NOT EXISTS `$db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
@@ -31,8 +27,7 @@ try {
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $pdo = new PDO($dsn, $user, $pass, $options);
 
-    // Auto-create tabel products — skema lengkap termasuk is_visible
-    // [BUG-3] Kolom is_visible sudah masuk ke definisi tabel, tidak perlu ALTER per-request
+// Auto-create tabel products
     $pdo->exec("CREATE TABLE IF NOT EXISTS products (
         id          INT AUTO_INCREMENT PRIMARY KEY,
         name        VARCHAR(255) NOT NULL,
@@ -48,8 +43,7 @@ try {
         created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )");
 
-    // Migrasi is_visible hanya di local/dev untuk database lama yang belum punya kolom ini
-    // [PERF-1] Di production (APP_ENV=production), blok ini dilewati — skema dianggap final
+// Migrasi kolom is_visible untuk DB lama (local/dev saja)
     if ($appEnv !== 'production') {
         $cols = $pdo->query("SHOW COLUMNS FROM products LIKE 'is_visible'")->fetchAll();
         if (empty($cols)) {
@@ -58,14 +52,13 @@ try {
         }
     }
 
-    // Migrasi kolom category — SELALU dieksekusi di semua environment (local maupun production)
-    // [CAT-1] Database production yang sudah berjalan belum punya kolom ini — tidak boleh di-skip
+// Migrasi kolom category (semua environment)
     $catCols = $pdo->query("SHOW COLUMNS FROM products LIKE 'category'")->fetchAll();
     if (empty($catCols)) {
         $pdo->exec("ALTER TABLE products ADD COLUMN category VARCHAR(30) NOT NULL DEFAULT 'makanan'");
     }
 
-    // Auto-create tabel login — [DB-1] tambah last_login_at dan last_login_ip
+    // Auto-create tabel login (dengan audit last_login)
     $pdo->exec("CREATE TABLE IF NOT EXISTS login (
         id             INT AUTO_INCREMENT PRIMARY KEY,
         username       VARCHAR(50) NOT NULL UNIQUE,
@@ -85,7 +78,7 @@ try {
         }
     }
 
-    // Auto-create tabel login_attempts — [SEC-5] rate limiting persisten
+    // Auto-create tabel login_attempts (rate limiting persisten)
     $pdo->exec("CREATE TABLE IF NOT EXISTS login_attempts (
         id              INT AUTO_INCREMENT PRIMARY KEY,
         identifier      VARCHAR(100) NOT NULL,
@@ -96,10 +89,7 @@ try {
         INDEX idx_identifier_ip (identifier, ip_address)
     )");
 
-    // Seed default admin kalau tabel login kosong
-    // [SEC-7] Kredensial admin dibaca dari .env (ADMIN_USERNAME & ADMIN_PASSWORD),
-    //         bukan di-hardcode. Di production, kalau password kosong/lemah,
-    //         digenerate acak agar tidak pernah ada default yang diketahui publik.
+// Seed admin default jika tabel login kosong; di production password lemah digenerate acak
     $adminCount = $pdo->query("SELECT COUNT(*) FROM login")->fetchColumn();
     if ($adminCount == 0) {
         $adminUser = getenv('ADMIN_USERNAME') ?: 'admin';
@@ -117,10 +107,7 @@ try {
             ->execute([$adminUser, $defaultHash]);
     }
 
-    // [SEC-7] Rotasi password default lama — DB yang sudah jalan (mis. hasil import SQL
-    //         lama) masih berisi user berpassword 'admin123'. Di production, reset otomatis
-    //         dari .env; kalau env kosong/lemah, digenerate acak. Berlaku untuk SEMUA user
-    //         yang masih memakai password default 'admin123'.
+// Di production, reset password user yang masih memakai default 'admin123'
     if ($appEnv === 'production') {
         $existing = $pdo->query("SELECT id, username, password FROM login")->fetchAll();
         foreach ($existing as $u) {
@@ -141,7 +128,7 @@ try {
         }
     }
 
-    // Seed produk dummy jika tabel kosong — [QUAL-4] gambar pakai placeholder lokal
+    // Seed produk dummy jika tabel kosong (gambar pakai placeholder lokal)
     $check_empty = $pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
     if ($check_empty == 0) {
         $placeholderImg = 'assets/img/gambarhero.png';
@@ -164,7 +151,7 @@ try {
     error_log("[DB] Koneksi database gagal: " . $e->getMessage());
     $db_error = "Koneksi database gagal. Periksa konfigurasi server.";
 
-    // Persist error to workspace logs for easier debugging from mobile devices
+    // Log error ke workspace untuk memudahkan debugging
     $logDir = __DIR__ . '/../logs';
     if (!is_dir($logDir)) @mkdir($logDir, 0755, true);
     $errFile = $logDir . '/db_error.log';
