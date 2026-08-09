@@ -178,18 +178,18 @@ if (isset($_GET['action'])) {
     </div>
 
     <!-- Hero Section -->
-    <div class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-brand-light/50 via-white to-gray-50">
+    <div class="relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28 overflow-hidden bg-gradient-to-br from-brand-light/50 via-white to-gray-50">
         <!-- Wallpaper tekstur halus, opacity sangat rendah -->
         <div class="absolute inset-0 z-0 pointer-events-none" style="background-image:url('assets/img/wallpaper.png');background-size:cover;background-position:center;opacity:0.065;"></div>
         <div class="absolute inset-0 z-0 opacity-40">
             <div class="absolute top-0 right-0 w-96 h-96 bg-brand-light rounded-full blur-3xl"></div>
         </div>
-        <div class="site-container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="site-container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div class="hero-enter">
-                <h1 class="text-5xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900 tracking-tight">
+                <h1 class="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6 text-gray-900 tracking-tight">
                     Olahan Premium dalam <em class="hero-em-curly text-brand">Kemasan Pintar</em>
                 </h1>
-                <p class="text-base md:text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
+                <p class="text-base md:text-lg lg:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
                     Nikmati sajian tradisional instan premium higienis. Dilengkapi teknologi QR Code Dinamis terintegrasi database untuk melacak verifikasi keaslian dan batch produksi real-time.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
@@ -198,16 +198,18 @@ if (isset($_GET['action'])) {
                 </div>
             </div>
             <div class="hero-enter-right relative flex justify-center">
-                <img src="assets/img/gambarhero.png" class="w-full max-w-xl h-auto object-contain" alt="Produk KWT Mawar Bodas II">
+                <img src="assets/img/gambarhero.png" class="w-full max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-2xl h-auto object-contain" alt="Produk KWT Mawar Bodas II">
             </div>
         </div>
+        <!-- Fade gradient bawah: menyatukan Hero dengan section Tentang Kami (bg-gray-50) -->
+        <div class="absolute bottom-0 left-0 right-0 h-20 md:h-28 bg-gradient-to-b from-transparent to-gray-50 pointer-events-none z-10"></div>
     </div>
 
     <!-- Section Tentang Kami -->
-    <section class="reveal-right py-10 md:py-14 bg-gray-50">
+    <section class="reveal-right py-10 md:py-14 lg:py-16 bg-gray-50">
         <div class="site-container">
             <!-- Card dengan foto background -->
-            <div class="relative overflow-hidden rounded-3xl shadow-lg min-h-[360px] md:min-h-[380px] flex items-center">
+            <div class="relative overflow-hidden rounded-3xl shadow-lg min-h-[360px] md:min-h-[380px] lg:min-h-[420px] xl:min-h-[460px] flex items-center">
 
                 <!-- Background foto kegiatan KWT -->
                 <img src="assets/img/foto-kwt-kegiatan.jpg"
@@ -218,33 +220,33 @@ if (isset($_GET['action'])) {
                 <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-brand-dark/30"></div>
 
                 <!-- Konten di atas overlay -->
-                <div class="relative z-10 flex flex-col justify-center p-6 md:p-14 max-w-xl">
+                <div class="relative z-10 flex flex-col justify-center p-6 md:p-10 lg:p-14 xl:p-20 max-w-xl lg:max-w-2xl">
 
                     <!-- Label kecil -->
                     <p class="text-xs font-bold uppercase tracking-widest text-white/60 mb-2 md:mb-3">Tentang Kami</p>
 
                     <!-- Judul -->
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-3 md:mb-4 leading-tight">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white tracking-tight mb-3 md:mb-4 leading-tight">
                         Mengenal KWT Mawar Bodas II
                     </h2>
 
                     <!-- Deskripsi -->
-                    <p class="text-white/90 text-sm md:text-base leading-relaxed max-w-lg mb-4 md:mb-6">
+                    <p class="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed max-w-lg mb-4 md:mb-6">
                         Berawal dari bagian Kelompok Tani Mawar Bodas 2, sekelompok ibu rumah tangga di Desa Bengle membentuk kelompok khusus wanita tani pada tahun 2019. Kini KWT Mawar Bodas II beranggotakan 21 orang yang aktif dalam bidang pertanian dan pembuatan olahan pangan rumahan.
                     </p>
 
                     <!-- Badge angka -->
-                    <div class="flex flex-wrap gap-5 md:gap-10 mb-5 md:mb-8">
+                    <div class="flex flex-wrap gap-5 md:gap-8 lg:gap-12 mb-5 md:mb-8">
                         <div>
-                            <p class="text-xl md:text-3xl font-black text-white leading-none">2019</p>
+                            <p class="text-xl md:text-2xl lg:text-3xl font-black text-white leading-none">2019</p>
                             <p class="text-xs text-white/70 uppercase tracking-wide mt-1">Tahun Berdiri</p>
                         </div>
                         <div>
-                            <p class="text-xl md:text-3xl font-black text-white leading-none">21</p>
+                            <p class="text-xl md:text-2xl lg:text-3xl font-black text-white leading-none">21</p>
                             <p class="text-xs text-white/70 uppercase tracking-wide mt-1">Anggota Aktif</p>
                         </div>
                         <div>
-                            <p class="text-xl md:text-3xl font-black text-white leading-none">Desa Bengle</p>
+                            <p class="text-xl md:text-2xl lg:text-3xl font-black text-white leading-none">Desa Bengle</p>
                             <p class="text-xs text-white/70 uppercase tracking-wide mt-1">Lokasi</p>
                         </div>
                     </div>
@@ -262,16 +264,16 @@ if (isset($_GET['action'])) {
     </section>
 
     <!-- Seksi Web-Camera Scanner -->
-    <section id="qrcode" class="reveal-left py-16 md:py-24 bg-gray-950 text-white relative">
+    <section id="qrcode" class="reveal-left py-16 md:py-20 lg:py-24 bg-gray-950 text-white relative">
         <div class="site-container relative z-10">
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-10 lg:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     <div>
                         <div class="inline-flex items-center gap-2 bg-brand/20 text-brand-light px-4 py-1.5 rounded-full font-semibold text-sm mb-6">
                             <i class="ph-bold ph-shield-check"></i> Teknologi Transparansi Rantai Pasok
                         </div>
-                        <h2 class="text-2xl md:text-4xl font-extrabold mb-6 tracking-tight">Verifikasi Keaslian Produk</h2>
-                        <p class="text-gray-300 mb-8 text-base leading-relaxed">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-6 tracking-tight">Verifikasi Keaslian Produk</h2>
+                        <p class="text-gray-300 mb-8 text-base lg:text-lg leading-relaxed">
                             Pastikan Anda mengonsumsi produk orisinal dari produsen resmi. Klik tombol di bawah ini untuk mengizinkan akses kamera browser Anda dan pindai QR Code unik di stiker kemasan.
                         </p>
                         <button onclick="startScanner()" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg shadow-brand/10">
@@ -316,14 +318,14 @@ if (isset($_GET['action'])) {
     </section>
 
     <!-- Bagian Etalase Produk -->
-    <section id="produk" class="py-12 md:py-16 bg-gray-50 border-t border-gray-100">
+    <section id="produk" class="py-12 md:py-16 lg:py-20 bg-gray-50 border-t border-gray-100">
         <div class="site-container">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Katalog Produk Pilihan</h2>
-                <p class="text-gray-500 mt-3">Nikmati beragam cita rasa kuliner nusantara instan kualitas restoran terpercaya.</p>
+            <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14 lg:mb-16">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-gray-900 tracking-tight">Katalog Produk Pilihan</h2>
+                <p class="text-gray-500 mt-3 text-sm md:text-base">Nikmati beragam cita rasa kuliner nusantara instan kualitas restoran terpercaya.</p>
             </div>
             <!-- Filter Bar Kategori Produk -->
-            <div class="flex flex-wrap justify-center gap-3 mb-10" id="category-filter-bar">
+            <div class="flex flex-wrap justify-center gap-3 mb-8 md:mb-10" id="category-filter-bar">
                 <button data-category="semua" class="category-filter-btn active-filter inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
                     <i class="ph-bold ph-squares-four text-base"></i> Semua
                 </button>
@@ -337,7 +339,7 @@ if (isset($_GET['action'])) {
                     <i class="ph-bold ph-house-line text-base"></i> Kebutuhan Rumah Tangga
                 </button>
             </div>
-            <div id="public-product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div id="public-product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6">
                 <div class="col-span-full text-center text-gray-500 py-12">
                     <i class="ph-bold ph-spinner animate-spin text-3xl text-brand mb-2 block mx-auto"></i> Memuat daftar menu...
                 </div>
@@ -346,25 +348,40 @@ if (isset($_GET['action'])) {
     </section>
 
     <!-- Section Hubungi Kami -->
-    <section class="reveal-left py-6 md:py-10 bg-white">
+    <section class="reveal-left py-8 md:py-12 lg:py-14 bg-white">
         <div class="site-container">
-            <div class="w-full bg-gradient-to-r from-brand-light to-white rounded-2xl border border-brand/20 shadow-sm px-6 md:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Ada Pertanyaan?</h2>
-                    <p class="text-gray-500 text-sm leading-relaxed max-w-md">Tim kami siap membantu seputar produk dan pemesanan. Hubungi kami langsung via WhatsApp.</p>
+            <div class="w-full bg-gradient-to-r from-brand-light to-white rounded-2xl border border-brand/20 shadow-sm overflow-hidden">
+                <div class="px-6 md:px-10 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                    <!-- Teks kiri -->
+                    <div class="flex-1 min-w-0">
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Ingin Bekerja Sama atau Bertanya?</h2>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-3">Hubungi kontak person kami, Ibu Isnaniah, untuk informasi lebih lanjut seputar KWT Mawar Bodas II.</p>
+                        <!-- Alamat -->
+                        <p class="text-xs text-gray-400 flex items-start gap-1.5">
+                            <i class="ph-bold ph-map-pin text-brand shrink-0 mt-0.5"></i>
+                            <span>Perum Citra Kebun Mas Blok L, Desa Bengle, Kecamatan Majalaya, Kabupaten Karawang, Jawa Barat</span>
+                        </p>
+                    </div>
+                    <!-- Tombol kanan -->
+                    <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+                        <a href="https://wa.me/6285711547232" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-brand/20 text-sm whitespace-nowrap">
+                            <i class="ph-bold ph-whatsapp-logo text-base"></i> Hubungi Isnaniah
+                        </a>
+                        <a href="https://maps.app.goo.gl/hFEDspN6qsLYPoKb8" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2 bg-white border border-brand/30 hover:bg-brand-light text-brand font-semibold px-6 py-3 rounded-xl transition-all text-sm whitespace-nowrap">
+                            <i class="ph-bold ph-map-pin text-base"></i> Lihat Lokasi
+                        </a>
+                    </div>
                 </div>
-                <a href="https://wa.me/6281381690100" target="_blank" rel="noopener noreferrer"
-                   class="shrink-0 inline-flex items-center justify-center gap-2.5 bg-brand hover:bg-brand-dark text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md shadow-brand/20 text-sm">
-                    <i class="ph-bold ph-whatsapp-logo text-lg"></i> Hubungi via WhatsApp
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="footer" class="bg-gray-900 text-gray-300">
-        <div class="site-container py-14">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="site-container py-14 lg:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
 
                 <!-- Kolom 1: Brand identity -->
                 <div>

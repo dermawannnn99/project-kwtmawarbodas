@@ -15,9 +15,6 @@ CREATE TABLE `login` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Admin dibuat otomatis saat aplikasi pertama jalan (lihat config/database.php),
--- kredensial dari .env (ADMIN_USERNAME & ADMIN_PASSWORD).
-
 -- Tabel login_attempts (rate limiting per username + IP)
 DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE `login_attempts` (
