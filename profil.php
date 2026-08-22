@@ -57,9 +57,9 @@
             </div>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="profil.php" class="text-brand font-semibold border-b-2 border-brand pb-0.5">Profil</a>
-                <a href="index.php#keunggulan" class="text-gray-600 hover:text-brand font-medium transition-colors">Keunggulan</a>
-                <a href="index.php#produk" class="text-gray-600 hover:text-brand font-medium transition-colors">Katalog Produk</a>
                 <a href="index.php#qrcode" class="text-gray-600 hover:text-brand font-medium transition-colors">Validasi QR Kemasan</a>
+                <a href="index.php#produk" class="text-gray-600 hover:text-brand font-medium transition-colors">Katalog Produk</a>
+                <a href="index.php#kontak" class="text-gray-600 hover:text-brand font-medium transition-colors">Hubungi</a>
                 <a href="pages/login.php" class="bg-brand/10 hover:bg-brand text-brand hover:text-white px-4 py-2 rounded-xl font-bold transition-all">Login</a>
             </div>
             <div class="md:hidden flex items-center gap-3">
@@ -84,12 +84,12 @@
     <nav class="flex-1 overflow-y-auto py-2">
         <a href="profil.php" onclick="closeMobileMenu()" class="flex items-center gap-3 px-5 py-3 text-brand font-semibold bg-brand-light border-b border-gray-50">
             <i class="ph-bold ph-user-circle text-lg"></i> Profil</a>
-        <a href="index.php#keunggulan" onclick="closeMobileMenu()" class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
-            <i class="ph-bold ph-star text-lg text-brand/70"></i> Keunggulan</a>
-        <a href="index.php#produk" onclick="closeMobileMenu()" class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
-            <i class="ph-bold ph-storefront text-lg text-brand/70"></i> Katalog Produk</a>
         <a href="index.php#qrcode" onclick="closeMobileMenu()" class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
             <i class="ph-bold ph-qr-code text-lg text-brand/70"></i> Validasi QR Kemasan</a>
+        <a href="index.php#produk" onclick="closeMobileMenu()" class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
+            <i class="ph-bold ph-storefront text-lg text-brand/70"></i> Katalog Produk</a>
+        <a href="index.php#kontak" onclick="closeMobileMenu()" class="flex items-center gap-3 px-5 py-3 text-gray-700 font-medium hover:bg-brand-light hover:text-brand transition-colors border-b border-gray-50">
+            <i class="ph-bold ph-chat-circle-text text-lg text-brand/70"></i> Hubungi</a>
     </nav>
 </div>
 
@@ -453,25 +453,25 @@
 <section class="reveal-right py-8 md:py-12 lg:py-14 bg-white">
     <div class="site-container">
         <div class="w-full bg-gradient-to-r from-brand-light to-white rounded-2xl border border-brand/20 shadow-sm overflow-hidden">
-            <div class="px-6 md:px-10 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div class="px-5 py-6 md:px-10 md:py-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
                 <!-- Teks kiri -->
                 <div class="flex-1 min-w-0">
                     <h2 class="text-xl md:text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Ingin Bekerja Sama atau Bertanya?</h2>
                     <p class="text-gray-500 text-sm leading-relaxed mb-3">Hubungi kontak person kami, Ibu Isnaniah, untuk informasi lebih lanjut seputar KWT Mawar Bodas II.</p>
                     <!-- Alamat -->
-                    <p class="text-xs text-gray-400 flex items-start gap-1.5">
+                    <p class="text-xs text-gray-400 leading-relaxed flex items-start gap-1.5">
                         <i class="ph-bold ph-map-pin text-brand shrink-0 mt-0.5"></i>
                         <span>Perum Citra Kebun Mas Blok L, Desa Bengle, Kecamatan Majalaya, Kabupaten Karawang, Jawa Barat</span>
                     </p>
                 </div>
                 <!-- Tombol kanan -->
-                <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+                <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-3">
                     <a href="https://wa.me/6285711547232" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-brand/20 text-sm whitespace-nowrap">
+                       class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-brand/20 text-sm">
                         <i class="ph-bold ph-whatsapp-logo text-base"></i> Hubungi Isnaniah
                     </a>
                     <a href="https://maps.app.goo.gl/hFEDspN6qsLYPoKb8" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center justify-center gap-2 bg-white border border-brand/30 hover:bg-brand-light text-brand font-semibold px-6 py-3 rounded-xl transition-all text-sm whitespace-nowrap">
+                       class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border border-brand/30 hover:bg-brand-light text-brand font-semibold px-6 py-3 rounded-xl transition-all text-sm">
                         <i class="ph-bold ph-map-pin text-base"></i> Lihat Lokasi
                     </a>
                 </div>
